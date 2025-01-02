@@ -125,14 +125,52 @@ async function wallet() {
     }
 }
 
-function walletNew() {
+async function walletNew() {
     if (!fs.existsSync(WALLET_PATH)) {
         const privateKey = new PrivateKey()
         const privkey = privateKey.toWIF()
         const address = privateKey.toAddress().toString()
         const json = { privkey, address, utxos: [] }
         fs.writeFileSync(WALLET_PATH, JSON.stringify(json, 0, 2))
-        console.log('address', address)
+        
+        // Import private key to core wallet
+        try {
+            const body = {
+                jsonrpc: "1.0",
+                id: "importprivkey",
+                method: "importprivkey",
+                params: [privkey, "junkscriptions", false]
+            }
+
+            const options = {
+                auth: {
+                    username: process.env.NODE_RPC_USER,
+                    password: process.env.NODE_RPC_PASS
+                }
+            }
+
+            await axios.post(process.env.NODE_RPC_URL, body, options)
+            console.log('Created new wallet and imported to core wallet')
+            console.log('Address:', address)
+            console.log('Private Key:', privkey)
+            console.log('\nIMPORTANT: Save your private key securely!')
+            console.log('\nBefore minting, you need to:')
+            console.log('1. Fund this address with JKC')
+            console.log('2. Run: node junkscriptions.js wallet sync')
+        } catch (error) {
+            console.error('Error importing to core wallet:', error.message)
+            if (error.response && error.response.data) {
+                console.error('RPC Error:', error.response.data.error)
+            }
+            // Still create local wallet even if core wallet import fails
+            console.log('\nLocal wallet created but core wallet import failed')
+            console.log('Address:', address)
+            console.log('Private Key:', privkey)
+            console.log('\nIMPORTANT: Save your private key securely!')
+            console.log('\nBefore minting, you need to:')
+            console.log('1. Fund this address with JKC')
+            console.log('2. Run: node junkscriptions.js wallet sync')
+        }
     } else {
         throw new Error('wallet already exists')
     }
