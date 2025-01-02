@@ -17,7 +17,7 @@ if (process.env.TESTNET == 'true') {
 if (process.env.FEE_PER_KB) {
     Transaction.FEE_PER_KB = parseInt(process.env.FEE_PER_KB)
 } else {
-    Transaction.FEE_PER_KB = 100000
+    Transaction.FEE_PER_KB = 5000000
 }
 
 const WALLET_PATH = process.env.WALLET || '.wallet.json'
@@ -25,7 +25,7 @@ const MAX_SCRIPT_ELEMENT_SIZE = 520
 const MAX_CHUNK_LEN = 240
 const MAX_PAYLOAD_LEN = 1500
 const DUST_AMOUNT = 100000 // 0.001 JKC minimum for dust threshold
-const INSCRIPTION_AMOUNT = 500000 // 0.005 JKC for inscription outputs
+const INSCRIPTION_AMOUNT = 100000 // 0.005 JKC for inscription outputs
 
 async function main() {
     let cmd = process.argv[2]
