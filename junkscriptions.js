@@ -25,7 +25,7 @@ const MAX_SCRIPT_ELEMENT_SIZE = 520
 const MAX_CHUNK_LEN = 240
 const MAX_PAYLOAD_LEN = 1500
 const DUST_AMOUNT = 100000 // 0.001 JKC minimum for dust threshold
-const INSCRIPTION_AMOUNT = 500000 // 0.005 JKC for inscription outputs
+const INSCRIPTION_AMOUNT = DUST_AMOUNT 
 
 async function main() {
     let cmd = process.argv[2]
