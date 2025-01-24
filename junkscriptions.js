@@ -730,6 +730,15 @@ function server() {
 }
 
 function showHelp() {
+    const asciiArt = `
+       __            __                  _       __  _                 
+      / /_  ______  / /_________________(_)___  / /_(_)___  ____  _____
+ __  / / / / / __ \\/ //_/ ___/ ___/ ___/ / __ \\/ __/ / __ \\/ __ \\/ ___/
+/ /_/ / /_/ / / / / ,< (__  ) /__/ /  / / /_/ / /_/ / /_/ / / / (__  ) 
+\\____/\\__,_/_/ /_/_/|_/____/\\___/_/  /_/ .___/\\__/_/\\____/_/ /_/____/  
+                                      /_/                              
+`;
+
     const sections = {
         'Wallet Management': [
             ['wallet new', 'Create a new wallet'],
@@ -752,13 +761,14 @@ function showHelp() {
 
     const examples = [
         ['node . wallet new', 'Create new wallet'],
-        ['node . junk-20 deploy JKCaddress SAIL 1000000 100', 'Deploy SAIL Junk-2o token'],
-        ['node . junk-20 mint JKCaddress SAIL 100 10', 'Mint SAIL 100 tokens 10 times'],
+        ['node . junk-20 deploy JKCaddress SAIL 1000000 100', 'Deploy SAIL token'],
+        ['node . junk-20 mint JKCaddress SAIL 100 10', 'Mint SAIL tokens 10 times'],
         ['node . mint JKCaddress ./junk.png', 'Inscribe image file'],
         ['node . mint-junkmap JKCaddress 1 100', 'Mint junkmap from 1 to 100']
     ];
 
-    console.log('\nJunkscriptions CLI Help\n');
+    console.log(asciiArt);
+    console.log('\nJunkscriptions CLI v1.0.0\n');
 
     Object.entries(sections).forEach(([title, commands]) => {
         console.log(`\x1b[1m\x1b[34m${title}\x1b[0m`);
