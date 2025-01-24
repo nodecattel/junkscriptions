@@ -730,19 +730,51 @@ function server() {
 }
 
 function showHelp() {
-    console.log('\nAvailable commands:')
-    console.log('  wallet new                          - Create a new wallet')
-    console.log('  wallet sync                         - Sync wallet UTXOs')
-    console.log('  wallet balance                      - Show wallet balance')
-    console.log('  wallet show                         - Show wallet address and private key')
-    console.log('  wallet consolidate                  - Consolidate UTXOs')
-    console.log('  junk-20 deploy <address> <tick> <max> <lim>  - Deploy new token')
-    console.log('  junk-20 mint <address> <tick> <amt> [repeat] - Mint tokens')
-    console.log('  junk-20 transfer <address> <tick> <amt>      - Transfer tokens')
-    console.log('  mint-junkmap <address> <start> <end>      - mint junkmap')
-    console.log('\nExample:')
-    console.log('  node . wallet new')
-    console.log('  node . junk-20 deploy JKCaddress SAIL 1000000 100')
+    const sections = {
+        'Wallet Management': [
+            ['wallet new', 'Create a new wallet'],
+            ['wallet sync', 'Sync wallet UTXOs'],
+            ['wallet balance', 'Show wallet balance'],
+            ['wallet show', 'Show wallet address and private key'],
+            ['wallet split <number-of-split>', 'Split UTXOs'],
+            ['wallet consolidate', 'Consolidate UTXOs']
+        ],
+        'Inscription Commands': [
+            ['mint <address> <file-path>', 'Inscribe file'],
+            ['mint-junkmap <address> <start> <end>', 'Mint junkmap']
+        ],
+        'JUNK-20 Token Operations': [
+            ['junk-20 deploy <address> <tick> <max> <lim>', 'Deploy new token'],
+            ['junk-20 mint <address> <tick> <amt> [repeat]', 'Mint tokens'],
+            ['junk-20 transfer <address> <tick> <amt>', 'Transfer tokens']
+        ]
+    };
+
+    const examples = [
+        ['node . wallet new', 'Create new wallet'],
+        ['node . junk-20 deploy JKCaddress SAIL 1000000 100', 'Deploy SAIL Junk-2o token'],
+        ['node . junk-20 mint JKCaddress SAIL 100 10', 'Mint SAIL 100 tokens 10 times'],
+        ['node . mint JKCaddress ./junk.png', 'Inscribe image file'],
+        ['node . mint-junkmap JKCaddress 1 100', 'Mint junkmap from 1 to 100']
+    ];
+
+    console.log('\nJunkscriptions CLI Help\n');
+
+    Object.entries(sections).forEach(([title, commands]) => {
+        console.log(`\x1b[1m\x1b[34m${title}\x1b[0m`);
+        console.log('─'.repeat(title.length));
+        commands.forEach(([cmd, desc]) => {
+            console.log(`  \x1b[33m${cmd.padEnd(45)}\x1b[0m ${desc}`);
+        });
+        console.log();
+    });
+
+    console.log('\x1b[1m\x1b[34mExample Usage\x1b[0m');
+    console.log('─'.repeat(12));
+    examples.forEach(([cmd, desc]) => {
+        console.log(`  \x1b[32m${cmd}\x1b[0m`);
+        console.log(`  ${desc}\n`);
+    });
 }
 
 main().catch((e) => {
