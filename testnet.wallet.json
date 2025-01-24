@@ -1,0 +1,13 @@
+{
+  "privkey": "cPv9tMApn438kDHg5rfaY8ifGkkiHFWuGmxApmeGgCWgsgffMWQm",
+  "address": "mxKC23sWPrA3cJjnC8b41iyqG4sKDHQfXE",
+  "utxos": [
+    {
+      "txid": "2a5e5e7251476f2886ec40768b6aab10dff9294f6d946aa81d7f42ec1864241d",
+      "vout": 0,
+      "amount": 9796668673,
+      "scriptPubKey": "76a914b8409a6252bfe34163c6debfb780366dfa54b80088ac",
+      "address": "mxKC23sWPrA3cJjnC8b41iyqG4sKDHQfXE"
+    }
+  ]
+}

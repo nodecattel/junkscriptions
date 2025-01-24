@@ -23,10 +23,10 @@ Create a `.env` file with your Junkcoin node information:
 
 ```plaintext
 NODE_RPC_URL=http://<ip>:9771
-NODE_RPC_USER=13456
-NODE_RPC_PASS=13456
+NODE_RPC_USER=test
+NODE_RPC_PASS=test
 TESTNET=false
-FEE_PER_KB=100000000
+FEE_PER_KB=5000000
 ```
 
 ### Step 3: Configure junkcoin.conf
@@ -34,8 +34,8 @@ FEE_PER_KB=100000000
 Set up your Junkcoin node configuration file (`junkcoin.conf`) with the following settings:
 
 ```plaintext
-rpcuser=13456
-rpcpassword=13456
+rpcuser=test
+rpcpassword=test
 rpcport=9771
 rpcallowip=127.0.0.1
 dns=1
@@ -45,12 +45,8 @@ dnsseed=1
 daemon=1
 server=1
 debug=1
-
-# Nodes to connect with
-addnode=159.89.85.93:9771
-addnode=157.173.198.7:9771
-addnode=72.5.43.135:9771
-```
+txindex=1
+``
 
 Save `junkcoin.conf` in your Junkcoin data directory (usually located at `~/.junkcoin` on Linux or `%APPDATA%\Junkcoin` on Windows).
 
@@ -214,8 +210,8 @@ Each inscription part after the first should start with a countdown separator. I
 This error indicates an issue with your node connection. Ensure your `junkcoin.conf` file is set up as follows:
 
 ```plaintext
-rpcuser=13456
-rpcpassword=13456
+rpcuser=test
+rpcpassword=test
 rpcport=9771
 server=1
 ```
@@ -227,10 +223,10 @@ Make sure `rpcallowip` is set to allow local connections, and check that the `rp
 This error typically means the miner fee is too low. Increase the fee by updating your `.env` file:
 
 ```plaintext
-FEE_PER_KB=1000000
+FEE_PER_KB=5000000
 ```
 
-The default is `100000000`, but you may need to increase it during times of high demand.
+The default is `5000000`, but you may need to increase it during times of high demand.
 
 ---
 
