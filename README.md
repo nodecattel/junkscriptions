@@ -80,6 +80,11 @@ txindex=1
 
 ## Usage
 
+### List all available Junkscription-cli commands
+```bash
+node . help
+```
+
 ### Wallet Management
 ```bash
 # Create new wallet
